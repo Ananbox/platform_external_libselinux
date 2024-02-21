@@ -13,7 +13,9 @@ int is_selinux_enabled(void)
 	/* init_selinuxmnt() gets called before this function. We
  	 * will assume that if a selinux file system is mounted, then
  	 * selinux is enabled. */
-	return (selinux_mnt ? 1 : 0);
+        // ananbox: disable selinux
+        return 0;
+	// return (selinux_mnt ? 1 : 0);
 }
 
 hidden_def(is_selinux_enabled)

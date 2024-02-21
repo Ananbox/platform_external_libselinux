@@ -9,6 +9,7 @@
 
 int lsetfilecon(const char *path, const char *context)
 {
+    se_hack1(0);
 	return lsetxattr(path, XATTR_NAME_SELINUX, context, strlen(context) + 1,
 			 0);
 }

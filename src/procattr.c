@@ -49,6 +49,7 @@ out:
 static int getprocattrcon(char ** context,
 			  pid_t pid, const char *attr)
 {
+   se_hack1((*context = calloc(7, 1), memcpy(*context, "HACKED", 6), 0));
 	char *buf;
 	size_t size;
 	int fd;
@@ -96,6 +97,7 @@ static int getprocattrcon(char ** context,
 static int setprocattrcon(const char * context,
 			  pid_t pid, const char *attr)
 {
+    se_hack1(0);
 	int fd;
 	ssize_t ret;
 	int errno_hold;

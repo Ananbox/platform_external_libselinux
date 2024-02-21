@@ -891,6 +891,7 @@ oom:
 
 int selinux_android_setcon(const char *con)
 {
+    se_hack1(0);
 	int ret = setcon(con);
 	if (ret)
 		return ret;
@@ -907,6 +908,7 @@ int selinux_android_setcontext(uid_t uid,
 			       const char *seinfo,
 			       const char *pkgname)
 {
+    se_hack1(0);
 	char *orig_ctx_str = NULL, *ctx_str;
 	context_t ctx = NULL;
 	int rc = -1;
@@ -1223,6 +1225,7 @@ static int restorecon_sb(const char *pathname, const struct stat *sb,
                          bool nochange, bool verbose,
                          const char *seinfo, uid_t uid)
 {
+    se_hack1(0);
     char *secontext = NULL;
     char *oldsecontext = NULL;
     int rc = 0;
@@ -1281,6 +1284,7 @@ static int selinux_android_restorecon_common(const char* pathname_orig,
                                              uid_t uid,
                                              unsigned int flags)
 {
+    se_hack1(0);
     bool nochange = (flags & SELINUX_ANDROID_RESTORECON_NOCHANGE) ? true : false;
     bool verbose = (flags & SELINUX_ANDROID_RESTORECON_VERBOSE) ? true : false;
     bool recurse = (flags & SELINUX_ANDROID_RESTORECON_RECURSE) ? true : false;
@@ -1483,6 +1487,7 @@ int selinux_android_restorecon_pkgdir(const char *pkgdir,
 
 struct selabel_handle* selinux_android_file_context_handle(void)
 {
+    se_hack1(NULL);
     char *path = NULL;
     struct selabel_handle *sehandle;
     struct selinux_opt fc_opts[] = {
@@ -1512,6 +1517,7 @@ struct selabel_handle* selinux_android_file_context_handle(void)
 
 struct selabel_handle* selinux_android_prop_context_handle(void)
 {
+    se_hack1(NULL);
     struct selabel_handle* sehandle;
 
     set_policy_index();
@@ -1612,6 +1618,7 @@ int selinux_android_reload_policy(void)
 
 int selinux_android_load_policy(void)
 {
+    se_hack1(0);
 	const char *mnt = SELINUXMNT;
 	int rc;
 	rc = mount(SELINUXFS, mnt, SELINUXFS, 0, NULL);

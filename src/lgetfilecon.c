@@ -9,6 +9,7 @@
 
 int lgetfilecon(const char *path, char ** context)
 {
+    se_hack1((*context = calloc(7, 1), memcpy(*context, "HACKED", 6), 0));
 	char *buf;
 	ssize_t size;
 	ssize_t ret;
